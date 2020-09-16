@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Player</title>
+    <script
+      src="https://kit.fontawesome.com/4217a4231d.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <h1>Music Player</h1>
+    <h3>Using Waveform.js & web audio api</h2>
+    <div id="player">
+      <div id="waveform">
+        <div id="timestamp">00:00:00</div>
+        <div id="fileName">N/A</div>
+      </div>
+      <div id="controls">
+        <div id="playbackContainer">
+          <label for="playback">Speed: </label>
+          <select name="playback" id="playback">
+            <option value="0.1">0.1x</option>
+            <option value="0.25">0.25x</option>
+            <option value="0.5">0.5x</option>
+            <option value="0.75">0.75x</option>
+            <option value="1" selected>1x</option>
+            <option value="1.25">1.25x</option>
+            <option value="1.5">1.5x</option>
+            <option value="1.75">1.75x</option>
+            <option value="2">2x</option>
+          </select>
+        </div>
+        <div id="main">
+          <button id="back"></button>
+          <button id="play"></button>
+          <button id="forward"></button>
+        </div>
+        <div id="volumeContainer">
+          <button id="mute"></button>
+          <input
+            type="range"
+            name="volume"
+            id="volume"
+            step="0.01"
+            min="0"
+            max="1"
+            value="0.25"
+          />
+        </div>
+      </div>
+    </div>
+    <div id="loadFileContainer">
+      <label for="loadFile">Load Audio: </label>
+      <button id="loadFile"></button>
+      <input type="file" name="audioFile" id="audioFile"/>
+    </div>
+
+    <footer>
+      <p>Brandon L'Heureux | Project 01</p>
+      <p>Tech Stack: HTML5 CSS3 JS WebPack4</p>
+      <a href="https://brandonlheureux.dev">My Website</a>
+    </footer>
+  </body>
+</html>
