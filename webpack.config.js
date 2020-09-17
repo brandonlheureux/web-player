@@ -73,6 +73,13 @@ module.exports = {
           loader: 'raw-loader',
         },
       },
+      {
+        test: /\.mp3$/,
+        loader: 'file-loader',
+        options: {
+          name: 'audio/[name].[ext]',
+        },
+      },
     ],
   },
   plugins: [

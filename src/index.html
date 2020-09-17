@@ -51,16 +51,31 @@
         </div>
       </div>
     </div>
+
     <div id="loadFileContainer">
-      <label for="loadFile">Load Audio: </label>
+      <label for="loadFile">Load Audio: (Local)</label>
       <button id="loadFile"></button>
       <input type="file" name="audioFile" id="audioFile"/>
     </div>
+    
+    
+    <div id="preloaded">
+      <p>Or.. </p>
+      <p>Choose one of the following:</p>
+      <select id="selectStockAudio" name="selectStockAudio">
+        <option value="./audio/mixkit-deep-meditation-109.mp3">mixkit-deep-meditation-109.mp3</option>
+        <option value="./audio/mixkit-deep-meditation-109.mp3">mixkit-just-chill-16.mp3</option>
+        <option value="./audio/mixkit-playground-fun-12.mp3">mixkit-playground-fun-12.mp3</option>
+        <option value="./audio/mixkit-summer-fun-13.mp3">mixkit-summer-fun-13.mp3</option>
+        <option value="./audio/mixkit-valley-sunset-127.mp3" selected>mixkit-valley-sunset-127.mp3</option>
+      </select>
+      <p>Royalty free audio from <a href="https://mixkit.co/free-stock-music/">Mixkit.co</a></p>
+    </div>
 
     <footer>
-      <p>Brandon L'Heureux | Project 01</p>
-      <p>Tech Stack: HTML5 CSS3 JS WebPack4</p>
-      <a href="https://brandonlheureux.dev">My Website</a>
+      <p id="name">Brandon L'Heureux | Project 01</p>
+      <p id="stack">Tech Stack: HTML5 CSS3 JS WebPack4</p>
+      <a href="https://brandonlheureux.dev">View My Portfolio</a>
     </footer>
   </body>
 </html>

@@ -1,4 +1,10 @@
+// webpack
+// import styles
 import './styles/main.scss';
+//import audio
+import './audio/audio.js';
+
+//load import wavesurfer into main.js
 import WaveSurfer from 'wavesurfer.js';
 
 console.log('main loaded');
@@ -13,6 +19,9 @@ const audioTimestamp = document.getElementById('timestamp');
 const audioPlayback = document.getElementById('playback');
 const audioFileName = document.getElementById('fileName');
 
+//stock audio as examples
+const selectStockAudio = document.getElementById('selectStockAudio');
+
 //place to hold audio file
 let currentFile;
 
@@ -23,18 +32,20 @@ const player = WaveSurfer.create({
   progressColor: 'purple',
   cursorColor: 'red',
   responsive: true,
-  backend: 'MediaElement',
   mediaType: 'audio',
   height: 106,
   barWidth: 2,
   barGap: 2,
   normalize: true,
-  barMinHeight: 1,
-  barRadius: 2,
   hideScrollbar: true,
   scrollParent: true,
-  minPxPerSec: 10,
+  minPxPerSec: 60,
+  barMinHeight: 1,
 });
+
+// default file
+player.load('./audio/mixkit-valley-sunset-127.mp3')
+audioFileName.textContent = './audio/mixkit-valley-sunset-127.mp3'
 
 player.setVolume(0.25);
 
@@ -43,7 +54,6 @@ audioFile.addEventListener('change', (e) => {
   currentFile = e.target.files[0];
   player.load(URL.createObjectURL(currentFile));
   audioFileName.textContent = currentFile.name;
-
 });
 
 audioPlay.addEventListener('click', (e) => {
@@ -51,11 +61,11 @@ audioPlay.addEventListener('click', (e) => {
 });
 
 audioBack.addEventListener('click', (e) => {
-  player.skip(-5);
+  player.skip(-15);
 });
 
 audioForward.addEventListener('click', (e) => {
-  player.skip(5);
+  player.skip(15);
 });
 
 audioVolume.addEventListener('input', (e) => {
@@ -99,8 +109,14 @@ function toTimestamp(seconds) {
   return new Date(seconds * 1000).toISOString().substr(11, 8);
 }
 
-
 //File loading
 document.getElementById('loadFile').addEventListener('click', (e) => {
   audioFile.click();
-})
+});
+
+selectStockAudio.addEventListener('input', (e) => {
+  currentFile = e.target.value;
+  player.load(e.target.value);
+  audioFileName.textContent = currentFile;
+});
+

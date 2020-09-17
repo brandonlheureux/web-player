@@ -6,18 +6,7 @@
 }
 
 :root {
-  --background-color: linear-gradient(
-    to top,
-    #3f51b1 0%,
-    #5a55ae 13%,
-    #7b5fac 25%,
-    #8f6aae 38%,
-    #a86aa4 50%,
-    #cc6b8e 62%,
-    #f18271 75%,
-    #f3a469 87%,
-    #f7c978 100%
-  );
+  --background-color: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
   --primary-color: #ff7a8a;
   --secondary-color: #113a5d;
   --light-color: #f9f9f9;
@@ -27,12 +16,16 @@
 html,
 body {
   width: 100%;
-  min-height: 100%;
+  min-height: 100vh;
 }
 
 body {
   background: var(--background-color) no-repeat center center/cover;
-  padding: 1rem;
+  font-size: larger;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 h1 {
@@ -40,10 +33,11 @@ h1 {
 }
 
 #player {
+  flex: 1;
   padding: 1rem;
   max-width: 960px;
-  margin: auto;
   padding-top: 20vh;
+  width: 100%;
 
   #waveform {
     border-top-left-radius: 1rem;
@@ -51,6 +45,7 @@ h1 {
     border: var(--secondary-color) solid 0.1rem;
     background-color: rgba($color: #ff7a8a, $alpha: 0.5);
     overflow: hidden;
+    cursor: pointer;
 
     position: relative;
     top: 0;
@@ -59,7 +54,7 @@ h1 {
   }
 
   #timestamp {
-    color: var(--light-color);
+    color: var(--dark-color);
     padding: 0.5rem;
 
     position: absolute;
@@ -69,13 +64,13 @@ h1 {
   }
 
   #fileName {
-    color: var(--light-color);
+    color: var(--dark-color);
     padding: 0.5rem;
 
     position: absolute;
     bottom: 0;
     right: 0;
-    z-index: 2;
+    z-index: 3;
     overflow: hidden;
   }
 
@@ -85,7 +80,8 @@ h1 {
     flex-wrap: wrap;
     flex-direction: row;
     padding: 1rem;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
 
     background-color: var(--secondary-color);
     border-bottom-left-radius: 1rem;
@@ -93,6 +89,11 @@ h1 {
 
     #volumeContainer {
       padding: 0.2rem;
+      flex: 1;
+      text-align: end;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
     }
 
     #main {
@@ -100,6 +101,8 @@ h1 {
       display: flex;
       flex-direction: row;
       margin: auto;
+      flex: 1;
+      justify-content: center;
     }
 
     #playbackContainer {
@@ -107,9 +110,10 @@ h1 {
       flex-direction: column;
       color: var(--light-color);
       width: 4rem;
-      // margin: auto;
+      flex: 1;
 
       * {
+        width: 4rem;
         margin: 0.1rem;
       }
     }
@@ -120,7 +124,7 @@ h1 {
       margin: 0 0.5rem;
       border-radius: 50%;
       color: var(--dark-color);
-      background-color: var(--primary-color);
+      background-color: var(--light-color);
       font-family: 'Font Awesome 5 Free';
       font-weight: 900;
       cursor: pointer;
@@ -163,8 +167,12 @@ h1 {
 }
 
 #loadFileContainer {
+  flex: 1;
   margin: auto;
   text-align: center;
+  color: var(--dark-color);
+  padding: 0.5rem;
+  width: fit-content;
 
   #audioFile {
     display: none;
@@ -175,7 +183,8 @@ h1 {
     height: 4rem;
     font-family: 'Font Awesome 5 Free';
     font-weight: 900;
-    background: none;
+    border-radius: 50%;
+    background: var(--dark-color);
     border: none;
     cursor: pointer;
 
@@ -186,32 +195,96 @@ h1 {
     &::before {
       font-size: xx-large;
       content: '\f093';
+      color: var(--light-color);
     }
   }
 }
 
+#preloaded {
+  flex: 1;
+  text-align: center;
+  padding: 0.5rem;
+  // border: #062743 solid 1px;
+  width: fit-content;
+  margin: auto;
+
+  color: var(--dark-color);
+
+  p {
+    margin: 0.5rem;
+  }
+
+  a {
+    text-decoration: underline;
+    color: var(--dark-color);
+  }
+}
+
 footer {
-  position: absolute;
+  width: 100%;
   padding: 1rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-content: center;
+  font-size: large;
 
   p {
     padding: 0.5rem;
+    flex: 1;
+  }
+
+  #name {
+  }
+
+  #stack {
+    text-align: center;
   }
 
   a {
     padding: 0.5rem;
-     text-decoration: none;
-     color: var(--light-color);
+    text-decoration: underline;
+    color: var(--light-color);
+    flex: 1;
+    text-align: end;
   }
 
   width: 100%;
   background: var(--dark-color);
   color: var(--light-color);
+}
 
-  bottom: 0;
-  left: 0;
+@media screen and (max-width: 1000px) {
+  footer {
+    flex-direction: column;
+
+    #name {
+      align-self: center;
+    }
+    #stack {
+      align-self: center;
+    }
+    a {
+      align-self: center;
+    }
+  }
+}
+
+@media screen and (max-width: 680px) {
+  #player {
+    #controls {
+      #main {
+        flex: auto;
+      }
+
+      #voleumeContainer {
+        flex: auto;
+      }
+
+      #playbackContainer {
+        flex: auto;
+      }
+    }
+  }
 }
